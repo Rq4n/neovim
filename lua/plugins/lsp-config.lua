@@ -20,11 +20,9 @@ return {
       lspconfig.lua_ls.setup({})
       lspconfig.gopls.setup({})
 
-      local opts = { noremap = true, silent = true }
-
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-      vim.keymap.set('n', "<leader>gd", vim.lsp.buf.definition, opts)
-      vim.keymap.set({'n'}, '<leader>ca', vim.lsp.buf.code_action, opts)
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+      vim.keymap.set('n', "<leader>gd", vim.lsp.buf.definition, {})
+      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
 
       -- diagnostics
       vim.diagnostic.config({
