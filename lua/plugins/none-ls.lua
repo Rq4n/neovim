@@ -14,6 +14,9 @@ return {
 				-- golang
 				null_ls.builtins.diagnostics.golangci_lint,
 				null_ls.builtins.formatting.goimports,
+
+				-- python
+				null_ls.builtins.formatting.black,
 			},
 		})
 		vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})

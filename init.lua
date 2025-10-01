@@ -10,6 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
+vim.opt.guicursor = "n-v-c:block"
 
 require("options")
 require("lazy").setup("plugins")
