@@ -1,10 +1,11 @@
 return {
-  {
-    "shaunsingh/nord.nvim",
-    lazy = false,
-    priority = 1000,
+    "craftzdog/solarized-osaka.nvim",
+  priority = 1000,
+  opts = {
+        transparent = true,
+    },
     config = function()
-      vim.cmd("colorscheme nord")
+        vim.cmd("colorscheme solarized-osaka")
     end,
-  },
 }
+
