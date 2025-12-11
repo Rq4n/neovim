@@ -1,29 +1,25 @@
 return {
-  "nvimtools/none-ls.nvim",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
-  config = function()
-    local null_ls = require("null-ls")
+	"nvimtools/none-ls.nvim",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+	},
+	config = function()
+		local null_ls = require("null-ls")
+		local b = null_ls.builtins
 
-    null_ls.setup({
-      sources = {
-        -- Lua
-        null_ls.builtins.formatting.stylua,
+		null_ls.setup({
+			sources = {
+				b.formatting.stylua,
 
-        -- Golang
-        null_ls.builtins.diagnostics.golangci_lint,
-        null_ls.builtins.formatting.goimports,
+				b.diagnostics.golangci_lint,
+				b.formatting.goimports,
 
-        -- Python
-        null_ls.builtins.formatting.black,
+				b.formatting.black,
 
-        -- Javascript / Typescript / React / HTML / JSON / CSS
-        null_ls.builtins.formatting.prettier,
-      },
-    })
+				b.formatting.prettier,
+			},
+		})
 
-    -- Format on save (optional but recommended)
-    vim.keymap.set("n", "gf", vim.lsp.buf.format, { desc = "Format buffer" })
-  end,
+		vim.keymap.set("n", "gf", vim.lsp.buf.format, { desc = "Format buffer" })
+	end,
 }
