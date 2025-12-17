@@ -1,3 +1,4 @@
+-- Mason e LSP Config
 return {
 	{
 		"williamboman/mason.nvim",
@@ -11,15 +12,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"gopls",
-				"ts_ls",
-				"html",
-				"cssls",
-				"tailwindcss",
-				"pyright",
-				"clangd",
-				"dockerls",
-				"sqlls",
-				"svelte",
+				"lua_ls",
 			},
 		},
 	},
@@ -28,7 +21,7 @@ return {
 		lazy = false,
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
+			
 			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 				cmd = { "lua-language-server" },
@@ -49,55 +42,11 @@ return {
 				},
 			})
 
-			vim.lsp.config("ts_ls", {
+			vim.lsp.config("gopls", {
 				capabilities = capabilities,
-				root_dir = function(...)
-					return require("lspconfig.util").root_pattern(".git")(...)
-				end,
-				settings = {
-					typescript = {
-						inlayHints = {
-							includeInlayParameterNameHints = "literal",
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-						},
-					},
-					javascript = {
-						inlayHints = {
-							includeInlayParameterNameHints = "all",
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayVariableTypeHints = true,
-						},
-					},
-				},
 			})
 
-			vim.lsp.config("tailwindcss", {
-				capabilities = capabilities,
-				root_dir = function(...)
-					return require("lspconfig.util").root_pattern(".git")(...)
-				end,
-			})
-
-			local servers = {
-				"gopls",
-				"html",
-				"cssls",
-				"pyright",
-				"clangd",
-				"dockerls",
-				"sqlls",
-				"svelte",
-			}
-
-			for _, server in ipairs(servers) do
-				vim.lsp.config(server, {
-					capabilities = capabilities,
-				})
-			end
-
-			vim.lsp.enable(vim.list_extend({ "lua_ls", "ts_ls", "tailwindcss", "ruby_lsp", "rubocop" }, servers))
+			vim.lsp.enable({ "lua_ls", "gopls" })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "LSP Go to Definition" })

@@ -15,3 +15,4 @@ vim.opt.guicursor = "n-v-c:block"
 require("options")
 require("keymaps")
 require("lazy").setup("plugins")
+vim.cmd[[colorscheme tokyonight]]
